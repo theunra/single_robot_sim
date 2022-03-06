@@ -7,50 +7,20 @@ This simulation system can simulate ONE robot soccer player for RoboCup Middle S
 Please read the paper ["Weijia Yao et al., A Simulation System Based on ROS and Gazebo for RoboCup Middle Size League, 2015"][2] for more information.   
    
 - Maintainer status: maintained
-- Maintainer: Weijia Yao <weijia.yao.nudt <AT> gmail.com>
+- Maintainer: Diandra <diandrarizqy7 <AT> gmail.com>
 - Author: Weijia Yao <weijia.yao.nudt <AT> gmail.com>
 - License: Apache
 - Bug / feature tracker: https://github.com/nubot-nudt/single_nubot_gazebo/issues
 - Source: git https://github.com/nubot-nudt/single_nubot_gazebo (branch: master)   
 
 # Recommended Operating Environment
-1. Ubuntu 14.04; 
-2. ROS Indigo or ROS Jade. (It is recommended to install ROS Jade)
-3. Gazebo 5.0 or above;
+1. Ubuntu 14.04 or newer (Tested on 20.04); 
+2. ROS Kinetic or newer (Tested on Noetic);
+3. Gazebo 11;
 4. gazebo_ros_pkgs; (please read the **NOTE** below for more information)  
 5. If you decide to use coach4sim with a GUI, you should make sure you have installed Qt5. The recommended install place is /opt. 
 Other versions of Ubuntu, ROS or Gazebo may also work, but we have not tested yet.
-
-**NOTE:** 
-Concerning how to install appropriate **gazebo_ros_pkgs**, please read the following according to your own situation:   
- - 1.  If you decide to use **ROS Indigo**, please read the following:   
-If you choose "desktop-full" install of ROS Indigo, there is a Gazebo 2.0 included initially. In order to install Gazebo 5.0/5.1, you should first remove Gazebo 2.0 by running:   
-(**The following command is dangerous; it might delete the whole ROS, so please do it carefully or you may find other ways to delete gazebo2**)   
-` $ sudo apt-get remove gazebo2* `    
-Then you should be able to install Gazebo 5.0 now. To install gazebo_ros_pkgs compatible with Gazebo
-5.0/5.1, run this command:   
-` $ sudo apt-get install ros-indigo-gazebo5-ros-pkgs ros-indigo-gazebo5-ros-control`   
-HOWEVER,    if the above command does now work, these packages may be moved to other places. You can check out [gazebo_ros][3] and download and install the correct version.   
- - 2. If you decide to use **ROS Jade** with **gazebo 5.0 or 5.1**, read the following   
-ROS Jade has gazebo_ros_pkgs with it; so you don't have to install gazebo_ros_pkgs again.  
-However, you should do the following steps to fix some of the bugs in ROS Jade related to Gazebo:        
-  -  (a) `$ sudo gedit /opt/ros/jade/lib/gazebo_ros/gazebo`    
-In this file, go to line 24 and delete the last '/'. So    
-`setup_path=$(pkg-config --variable=prefix gazebo)/share/gazebo/`    
-is changed to     
-`setup_path=$(pkg-config --variable=prefix gazebo)/share/gazebo`    
-You can read this link for more [information][4]   
-  -  (b) Install Gazebo 5.     
-   `$ sudo apt-get install gazebo5`     
-If this fails, try to run the ['gazebo5_install.sh'][5](obtained from Gazebo's official website).    
-Read for more [information][6]   
-  -  (c) Optional: copy resource files to the new gazebo folder.    
-   `$ sudo cp -r /usr/share/gazebo-5.0/* /usr/share/gazebo-5.1`      
- - 3. If you decide to use **ROS Jade** with **gazebo 7.1**, read the following,    
-  -  (1) Install gazebo 7.0 by running [gazebo7_install.sh][7](obtained from Gazebo's official website);      
-  -  (2) Then run this in the terminal:   
-  -  ` $ sudo apt-get install ros-jade-gazebo7-ros-pkgs`   
-
+   
 # Complie
 1. Go to the package root directory (single_nubot_gazebo)
 2. If you already have CMakeLists.txt in the "src" folder, then you can skip this step. 
