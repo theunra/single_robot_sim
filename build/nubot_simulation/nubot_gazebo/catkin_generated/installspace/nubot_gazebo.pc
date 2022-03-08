@@ -1,0 +1,8 @@
+prefix=/home/theunra/single_robot_sim/install
+
+Name: nubot_gazebo
+Description: Description of nubot_gazebo
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: sensor_msgs gazebo_ros roscpp dynamic_reconfigure

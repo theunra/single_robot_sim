@@ -322,10 +322,11 @@ bool NubotGazebo::update_model_info(void)
         nubot_football_vector_length_ = nubot_football_vector_.Length();                 // not consider z element
 
         // transform kick_vector_nubot in world frame
-     /*   ignition::math::Quaterniond    rotation_quaternion = nubot_state_.pose.orientation;
-        ignition::math::Matrix3d       RotationMatrix3 = rotation_quaternion.Euler();
+        ignition::math::Quaterniond    rotation_quaternion = nubot_state_.pose.orientation;
+        //ignition::math::Matrix3d       RotationMatrix3 = rotation_quaternion.Euler();
+        ignition::math::Matrix3d RotationMatrix3(rotation_quaternion);
         kick_vector_world_ = RotationMatrix3 * kick_vector_nubot; // vector from nubot origin to kicking mechanism in world frame
-        */
+        
         return 1;
    }
    else
