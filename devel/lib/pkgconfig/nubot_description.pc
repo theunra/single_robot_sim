@@ -1,8 +1,0 @@
-prefix=/home/theunra/single_robot_sim/devel
-
-Name: nubot_description
-Description: Description of nubot_description
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: gazebo_ros
