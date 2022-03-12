@@ -1,2 +1,0 @@
-nubot_common:nubot_simulation/nubot_description:nubot_simulation/nubot_gazebo
--DCATKIN_DEVEL_PREFIX=/home/theunra/single_robot_sim/devel -DCMAKE_INSTALL_PREFIX=/home/theunra/single_robot_sim/install -G Unix Makefiles
