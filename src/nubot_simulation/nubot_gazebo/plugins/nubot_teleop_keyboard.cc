@@ -43,7 +43,7 @@
 #define KEYCODE_SP 0x20    // key " " kick ball
 
 #define VELOCITY        1           // m/s
-#define OMEGA           1.0         // rad/s
+#define OMEGA           2.0         // rad/s
 #define KICK_BALL_VEL   5.0         // m/s
 
 using namespace std;
@@ -59,11 +59,12 @@ NubotTeleopKey::NubotTeleopKey():
   dribble_flag_(false), shot_flag_(false)
 {
     nh_.param("/field/robot_prefix",  robot_prefix_, std::string("bot"));
-    std::string robot_name = robot_prefix_ + robot_num;
+  //  std::string robot_name = robot_prefix_ + robot_num;
+   std::string robot_name = "nubot1";
     // set param to loose the control requirements
     // nh_.setParam("/nubot/dribble_thres", 0.60);
     // nh_.setParam("/nubot/angle_err_deg", 15);
-#if 0
+#if 1
     vel_pub = nh_.advertise<nubot_common::VelCmd>(robot_name + "/nubotcontrol/velcmd", 10);
     ballhandle_client_ =  nh_.serviceClient<nubot_common::BallHandle>(robot_name + "/BallHandle");
     shoot_client_ = nh_.serviceClient<nubot_common::Shoot>(robot_name + "/Shoot");

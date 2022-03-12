@@ -21,7 +21,7 @@ function rand
 # spawn football
 rosrun gazebo_ros spawn_model -file $(rospack find nubot_description)/models/football/model.sdf -sdf \
                               -model ${football_name} \
-                              -x -8.0 -y 5.0 -z 0.0 \
+                              -x -8.0 -y 5.0 -z 0.0  \
                                
 
 #rosrun gazebo_ros spawn_model -file $(rospack find nubot_description)/models/nubot/model.sdf -sdf \
