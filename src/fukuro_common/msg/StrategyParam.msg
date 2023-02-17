@@ -1,0 +1,16 @@
+float32 radius_dribble_auto_on
+float32 angle_dribble_auto_on
+float32 radius_mulai_dribble_bola
+float32 angle_mulai_dribble_bola
+float32 min_error_posisi_kick
+float32 min_error_sudut_kick
+float32 min_error_posisi_homing
+float32 min_error_sudut_homing
+float32 error_positioning
+float32 error_sudut_positioning
+float32 radius_mulai_kick_off
+float32 upper_saturate
+float32 lower_saturate
+float32 upper_saturate_engaged
+float32 lower_saturate_engaged
+float32 max_angle_saturate

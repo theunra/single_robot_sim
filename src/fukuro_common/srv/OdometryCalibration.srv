@@ -1,0 +1,5 @@
+float64 kx
+float64 ky
+float64 kw
+---
+int64 ok

@@ -14,9 +14,9 @@
 #include <ros/subscribe_options.h>
 #include <gazebo_msgs/ModelStates.h>
 #include <gazebo_msgs/ModelState.h>
-#include "nubot_common/VelCmd.h"
-#include "nubot_common/Shoot.h"
-#include "nubot_common/BallHandle.h"
+#include "fukuro_common/VelCmd.h"
+#include "fukuro_common/SimShoot.h"
+#include "fukuro_common/SimBallHandle.h"
 
 #include <ros/ros.h>
 #include <boost/thread.hpp>
@@ -107,6 +107,7 @@ enum nubot_substate
         std::string                 football_name_;
         std::string                 football_chassis_;
         std::string                 robot_prefix_;
+        std::string                 robot_name;
         unsigned int                football_index_;
         unsigned int                nubot_index_;
 
@@ -152,19 +153,19 @@ enum nubot_substate
 
         /// \brief VelCmd message callback function
         /// \param[in] cmd VelCmd msg shared pointer
-        void vel_cmd_CB(const nubot_common::VelCmd::ConstPtr& cmd);
+        void vel_cmd_CB(const fukuro_common::VelCmd::ConstPtr& cmd);
 
         /// \brief Ball handling service server function
         /// \param[in] req ball handle service request
         /// \param[out] res ball handle service response
-        bool ball_handle_control_service(nubot_common::BallHandle::Request  &req,
-                                      nubot_common::BallHandle::Response &res);
+        bool ball_handle_control_service(fukuro_common::SimBallHandle::Request  &req,
+                                      fukuro_common::SimBallHandle::Response &res);
 
         /// \brief Ball shooting service server function
         /// \param[in] req ball handle service request
         /// \param[out] res ball handle service response
-        bool shoot_control_servive(nubot_common::Shoot::Request  &req,
-                                 nubot_common::Shoot::Response &res);
+        bool shoot_control_servive(fukuro_common::SimShoot::Request  &req,
+                                 fukuro_common::SimShoot::Response &res);
 
         /// \brief Custom message callback queue thread
         void message_queue_thread();

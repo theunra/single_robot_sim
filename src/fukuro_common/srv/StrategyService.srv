@@ -1,0 +1,11 @@
+string strategy_state
+string strategy_option
+string role
+int32 obs1_pos
+int32 obs2_pos
+int32 kiper_pos
+string option
+geometry_msgs/Pose2D home_pos
+geometry_msgs/Pose2D kick_pos
+---
+uint8 ok

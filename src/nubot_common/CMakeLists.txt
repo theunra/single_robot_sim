@@ -15,7 +15,7 @@ add_message_files(DIRECTORY msg FILES
 VelCmd.msg
 )
 
-add_service_files(DIRECTORY srv FILES BallHandle.srv Shoot.srv)
+add_service_files(DIRECTORY srv FILES SimBallHandle.srv SimShoot.srv)
 
 generate_messages(DEPENDENCIES std_msgs)
 

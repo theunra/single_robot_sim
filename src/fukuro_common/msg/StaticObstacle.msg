@@ -1,0 +1,8 @@
+Obstacle obstacle1
+Obstacle obstacle2
+Obstacle obstacle3
+Obstacle obstacle4
+Obstacle obstacle5
+Obstacle obstacle6
+Obstacle obstacle7
+Obstacle obstacle8

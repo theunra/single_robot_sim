@@ -90,6 +90,13 @@ void NubotGazebo::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   rosnode_->param("/nubot/kick_ball_vel",    kick_ball_vel_,            20.0);
   rosnode_->param("/field/robot_prefix",     robot_prefix_,             std::string("bot"));
 
+    //load env variable to get robot name
+    if(!ros::get_environment_variable(robot_name,"ROBOT"))
+    {
+        ROS_ERROR("robot name empty!!! export ROBOT=fukuro1");
+        exit(-1);
+
+    }
   // Load the football model 
   this->football_model_ = world_->ModelByName(football_name_);
 
@@ -109,19 +116,19 @@ void NubotGazebo::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     ros::VoidPtr(), &this->message_queue_);
   this->ModelStates_sub_ = this->rosnode_->subscribe(so1);
 
-  ros::SubscribeOptions so2 = ros::SubscribeOptions::create<nubot_common::VelCmd>(
-    "nubotcontrol/velcmd", 100, boost::bind( &NubotGazebo::vel_cmd_CB,this,_1),
+  ros::SubscribeOptions so2 = ros::SubscribeOptions::create<fukuro_common::VelCmd>(
+    robot_name + "/velcmd", 100, boost::bind( &NubotGazebo::vel_cmd_CB,this,_1),
     ros::VoidPtr(), &this->message_queue_);
   this->Velcmd_sub_ = this->rosnode_->subscribe(so2);
 
   // Service Servers
-  ros::AdvertiseServiceOptions aso1 = ros::AdvertiseServiceOptions::create<nubot_common::BallHandle>(
-              "BallHandle", boost::bind(&NubotGazebo::ball_handle_control_service, this, _1, _2),
+  ros::AdvertiseServiceOptions aso1 = ros::AdvertiseServiceOptions::create<fukuro_common::SimBallHandle>(
+              robot_name + "/BallHandle", boost::bind(&NubotGazebo::ball_handle_control_service, this, _1, _2),
               ros::VoidPtr(), &this->service_queue_);
   ballhandle_server_ =   this->rosnode_->advertiseService(aso1);
 
-  ros::AdvertiseServiceOptions aso2 = ros::AdvertiseServiceOptions::create<nubot_common::Shoot>(
-              "Shoot", boost::bind(&NubotGazebo::shoot_control_servive, this, _1, _2),
+  ros::AdvertiseServiceOptions aso2 = ros::AdvertiseServiceOptions::create<fukuro_common::SimShoot>(
+              robot_name + "/Shoot", boost::bind(&NubotGazebo::shoot_control_servive, this, _1, _2),
               ros::VoidPtr(), &this->service_queue_);
   shoot_server_ =   this->rosnode_->advertiseService(aso2);
 
@@ -184,8 +191,8 @@ void NubotGazebo::UpdateChild()
     {                               // so after receiving model_states message, then nubot moves.
        /********** EDIT BEGINS **********/
 
-        // nubot_be_control();
-        nubot_auto_control();
+        nubot_be_control();
+        // nubot_auto_control();
 
        /**********  EDIT ENDS  **********/
     }
@@ -336,12 +343,12 @@ bool NubotGazebo::update_model_info(void)
    }
 }
 
-void NubotGazebo::vel_cmd_CB(const nubot_common::VelCmd::ConstPtr& cmd)
+void NubotGazebo::vel_cmd_CB(const fukuro_common::VelCmd::ConstPtr& cmd)
 {
    this->msgCB_lock_.lock();
 
-    Vx_cmd_ = cmd->Vx;
-    Vy_cmd_ = cmd->Vy;
+    Vx_cmd_ = cmd->vx;
+    Vy_cmd_ = cmd->vy;
     w_cmd_  = cmd->w;
     // The following calculation is based on robot body frame.
     ignition::math::Vector3d Vx_nubot = Vx_cmd_ * kick_vector_world_;
@@ -354,8 +361,8 @@ void NubotGazebo::vel_cmd_CB(const nubot_common::VelCmd::ConstPtr& cmd)
     this->msgCB_lock_.unlock();
 }
 
-bool NubotGazebo::ball_handle_control_service(nubot_common::BallHandle::Request  &req,
-                                            nubot_common::BallHandle::Response &res)
+bool NubotGazebo::ball_handle_control_service(fukuro_common::SimBallHandle::Request  &req,
+                                            fukuro_common::SimBallHandle::Response &res)
 {
     this->srvCB_lock_.lock();
 
@@ -377,8 +384,8 @@ bool NubotGazebo::ball_handle_control_service(nubot_common::BallHandle::Request 
     return true;
 }
 
-bool NubotGazebo::shoot_control_servive( nubot_common::Shoot::Request  &req,
-                                       nubot_common::Shoot::Response &res )
+bool NubotGazebo::shoot_control_servive( fukuro_common::SimShoot::Request  &req,
+                                       fukuro_common::SimShoot::Response &res )
 {
     this->srvCB_lock_.lock();
 
@@ -387,7 +394,8 @@ bool NubotGazebo::shoot_control_servive( nubot_common::Shoot::Request  &req,
         dribble_flag_ = false;
         shot_flag_ = true;
         mode_ = (int)req.ShootPos;           //TODO: mode:-1,1,others
-        force_ = (double)req.strength;       // FIXME: need conversion from force to velocity
+        double str = req.strength;
+        force_ = str;       // FIXME: need conversion from force to velocity
         ROS_INFO("%s shoot_control_service(): ShootPos:%d strength:%f",model_name_.c_str(), mode_, force_);
         res.ShootIsDone = 1;
     }

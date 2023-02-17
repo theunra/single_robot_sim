@@ -1,0 +1,11 @@
+bool obstacle1
+bool obstacle2
+bool obstacle3
+bool obstacle4
+bool obstacle5
+bool obstacle6
+bool obstacle7
+bool obstacle8
+bool obstacle_kiper
+---
+uint8 ok

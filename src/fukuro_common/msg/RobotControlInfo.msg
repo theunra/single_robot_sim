@@ -1,0 +1,4 @@
+float64 error_radius
+float64 error_angle
+geometry_msgs/Pose2D setpoint
+bool plan

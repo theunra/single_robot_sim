@@ -1,0 +1,3 @@
+uint8 kick_request
+---
+int64 ShootIsDone

@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="nubot_gazebo" type ="nubot_teleop_keyboard" name="rival_node" respawn="true">  
+    </node>
+</launch>

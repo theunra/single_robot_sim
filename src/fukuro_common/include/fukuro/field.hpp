@@ -1,0 +1,171 @@
+#ifndef FIELD_HPP
+#define FIELD_HPP
+
+#include <cmath>
+
+// This Field in meters
+
+#define TO_RAD (M_PIl / 180.0)
+#define TO_DEG (180.0 / M_PIl)
+
+#define GRID_SIZE 4
+#define START_RADIUS 10
+#define GOAL_RADIUS 10
+#define SOLUTION_RADIUS 5
+#define ROBOT_RADIUS 50
+#define OBSTACLE_RADIUS 30
+
+#define OLD_FIELD
+
+#ifndef OLD_FIELD //NEW_FIELD
+
+#define FIELD_WIDTH 1200
+#define FIELD_HEIGHT 800
+
+#define XLINE1 600
+#define XLINE2 (XLINE1 - 50)
+#define XLINE3 (XLINE1 - 180)
+#define XLINE4 0
+#define XLINE5 -(XLINE3)
+#define XLINE6 -(XLINE2)
+#define XLINE7 -(XLINE1)
+
+#define YLINE1 400
+#define YLINE2 262
+#define YLINE3 162
+#define YLINE4 -(YLINE3)
+#define YLINE5 -(YLINE2)
+#define YLINE6 -(YLINE1)
+
+#define CENTER_CIRCLE_RADIUS 130
+#define POST_CIRCLE_RADIUS 50
+
+#define MAX_FIELD_X 6.0
+#define MAX_FIELD_Y 4.0
+
+#define ERROR_RADIUS 0.425
+#define ERROR_ANGLE TO_RAD * 11.25
+
+//#define KICK_OFF_X 0.0
+//#define KICK_OFF_Y 1.3
+#define KICK_OFF_X -1.0
+#define KICK_OFF_Y 0.0
+//#define KICK_OFF_ANGLE M_PI_2
+#define KICK_OFF_ANGLE 0.0
+
+#define RADIUS_BALL_ENGAGED 0.33
+#define RADIUS_BALL_DRIBBLE 0.75
+
+#define ANGLE_BALL_DRIBBLE TO_RAD * 20.0
+
+#define DEFENSE_LINE_1 -2.75
+#define DEFENSE_LINE_2 -3.5
+
+#define MAXIMUM_DRIBBLE_DISTANCE 3.0
+
+#define GOAL_POS_X 5.50
+#define GOAL_POS_Y 0.0
+
+#define STRIKER_HOME_X -1.732
+#define STRIKER_HOME_Y 0.375
+
+#define DEFENDER_HOME_X DEFENSE_LINE_1
+#define DEFENDER_HOME_Y -0.375
+
+#define GOALIE_HOME_X -GOAL_POS_X
+#define GOALIE_HOME_Y 0.0
+
+#define MAX_OBSTACLE_X 6.0
+#define MAX_OBSTACLE_Y 4.0
+#define GOAL_WIDTH 2.0
+#define DEFAULT_KICK_TARGET_X 3.75
+#define DEFAULT_KICK_TARGET_Y 0.0
+#define KICK_TARGET_1_X 3.75
+#define KICK_TARGET_1_Y 2.50
+#define KICK_TARGET_2_X 3.75
+#define KICK_TARGET_2_Y -KICK_TARGET_1_Y
+#define PENALTY_KICK_POS_X 5.0
+
+#else //OLD_FIELD
+
+#define FIELD_WIDTH 900.0
+#define FIELD_HEIGHT 600.0
+
+#define XLINE1 450.0
+#define XLINE2 (XLINE1 - 38.0)
+#define XLINE3 (XLINE1 - 113.0)
+#define XLINE4 0.0
+#define XLINE5 -(XLINE3)
+#define XLINE6 -(XLINE2)
+#define XLINE7 -(XLINE1)
+
+#define YLINE1 300.0
+#define YLINE2 213.0
+#define YLINE3 138.0
+#define YLINE4 -(YLINE3)
+#define YLINE5 -(YLINE2)
+#define YLINE6 -(YLINE1)
+
+#define CENTER_CIRCLE_RADIUS 100.0
+#define POST_CIRCLE_RADIUS 50.0
+
+#define MAX_FIELD_X 450
+#define MAX_FIELD_Y 300
+
+#define ERROR_RADIUS 0.075
+#define ERROR_ANGLE 5.0 * TO_RAD
+#define ERROR_ANGLE_DEG 30
+#define LOCALICATIONERROR 30
+
+#define KICK_OFF_X 0.0
+#define KICK_OFF_Y 1.0
+#define KICK_OFF_ANGLE M_PI_2l
+
+#define RADIUS_BALL_ENGAGED 0.42
+#define RADIUS_BALL_DRIBBLE 0.84
+#define ANGLE_BALL_DRIBBLE (M_PI_2l / 9.0)
+
+#define DEFENSE_LINE_1 -1.875
+#define DEFENSE_LINE_2 -2.625
+
+#define MAXIMUM_DRIBBLE_DISTANCE 2.7
+
+#define GOAL_POS_X 4.12
+#define GOAL_POS_Y 0.0
+#define GOAL_POS_Y2 0.3
+#define GOAL_POS_Y3 -GOAL_POS_Y2
+
+#define STRIKER_HOME_X -1.414
+#define STRIKER_HOME_Y 0.375
+
+#define DEFENDER_HOME_X DEFENSE_LINE_1
+#define DEFENDER_HOME_Y -0.375
+
+#define GOALIE_HOME_X -GOAL_POS_X
+#define GOALIE_HOME_Y 0.0
+
+#define MAX_OBSTACLE_X 450.0
+#define MAX_OBSTACLE_Y 300.0
+#define GOAL_WIDTH 200.0
+#define DEFAULT_KICK_TARGET_X 281.25
+#define DEFAULT_KICK_TARGET_Y 0.0
+#define KICK_TARGET_1_X 281.25
+#define KICK_TARGET_1_Y 187.5
+#define KICK_TARGET_2_X 281.25
+#define KICK_TARGET_2_Y -KICK_TARGET_1_Y
+#define PENALTY_KICK_POS_X 375.0                  
+
+#define COVID19_HOME_LEFT_X 190.0
+#define COVID19_HOME_LEFT_Y 269.0
+
+#define COVID19_HOME_RIGHT_X COVID19_HOME_LEFT_X
+#define COVID19_HOME_RIGHT_Y -COVID19_HOME_LEFT_Y
+
+#define GOAL_POS_COVID19_X 1.6
+#define GOAL_POS_COVID19_Y 0.0
+
+#define DIST_ROBOT 1.5 
+
+#endif //FIELD
+
+#endif //FIELD_HPP

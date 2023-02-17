@@ -4,7 +4,7 @@
 #include <ros/ros.h>
 #include <string>
 
-#include <nubot_common/VelCmd.h>
+#include <fukuro_common/VelCmd.h>
 #include <nubot_common/BallHandle.h>
 #include <nubot_common/Shoot.h>
 
@@ -38,7 +38,7 @@ namespace nubot
             ros::Publisher vel_pub;
 
             /// \brief Velocity messages
-            nubot_common::VelCmd vel_cmd_;
+            fukuro_common::VelCmd vel_cmd_;
 
             double vx_, vy_, w_;
 

@@ -42,8 +42,8 @@
 #define KEYCODE_RR 0x2e  // key "." rotate
 #define KEYCODE_SP 0x20    // key " " kick ball
 
-#define VELOCITY        1           // m/s
-#define OMEGA           2.0         // rad/s
+#define VELOCITY        2           // m/s
+#define OMEGA           5.0         // rad/s
 #define KICK_BALL_VEL   5.0         // m/s
 
 using namespace std;
@@ -58,18 +58,18 @@ NubotTeleopKey::NubotTeleopKey():
   vx_(0.0), vy_(0.0), w_(0.0), mode_(RUN),
   dribble_flag_(false), shot_flag_(false)
 {
-    nh_.param("/field/robot_prefix",  robot_prefix_, std::string("bot"));
-  //  std::string robot_name = robot_prefix_ + robot_num;
-   std::string robot_name = "nubot1";
+    nh_.param("/field/robot_prefix",  robot_prefix_, std::string("nubot"));
+   std::string robot_name = robot_prefix_ + robot_num;
+  //  std::string robot_name = "rival1";
     // set param to loose the control requirements
     // nh_.setParam("/nubot/dribble_thres", 0.60);
     // nh_.setParam("/nubot/angle_err_deg", 15);
-#if 1
-    vel_pub = nh_.advertise<nubot_common::VelCmd>(robot_name + "/nubotcontrol/velcmd", 10);
+#if 0
+    vel_pub = nh_.advertise<nubot_common::VelCmd>(robot_name + "/vel_cmd", 10);
     ballhandle_client_ =  nh_.serviceClient<nubot_common::BallHandle>(robot_name + "/BallHandle");
     shoot_client_ = nh_.serviceClient<nubot_common::Shoot>(robot_name + "/Shoot");
 #else
-    vel_pub = nh_.advertise<nubot_common::VelCmd>("/nubotcontrol/velcmd", 10);
+    vel_pub = nh_.advertise<fukuro_common::VelCmd>("/fukuro2/velcmd", 10);
     ballhandle_client_ =  nh_.serviceClient<nubot_common::BallHandle>("/BallHandle");
     shoot_client_ = nh_.serviceClient<nubot_common::Shoot>("/Shoot");
 #endif
@@ -171,8 +171,8 @@ void NubotTeleopKey::keyLoop()
     if(dirty ==true)
     {
         // publish movement messages
-        vel_cmd_.Vx = vx_;
-        vel_cmd_.Vy = vy_;
+        vel_cmd_.vx = vx_;
+        vel_cmd_.vy = vy_;
         vel_cmd_.w = w_;
         vel_pub.publish(vel_cmd_);
 

@@ -1,0 +1,12 @@
+uint8 refresh
+int64 STMConnect
+uint8 isSTM
+int64 ArduinoConnect
+uint8 isArduino
+Compass Compass
+---
+string[] port_list
+string[] manufacturer_list
+uint8 STMSuccess
+uint8 ArduinoSuccess
+uint8 Compassuccess
